@@ -1,6 +1,15 @@
-FROM kalilinux/kali-rolling:latest
+FROM ubuntu:latest
 
-RUN curl -fsSL https://deno.land/install.sh | sh
+RUN apt-get update && \
+    apt-get install -y nmap \
+    gobuster \
+    unzip \
+    net-tools \
+    curl \
+    nodejs \
+    npm
+
+RUN npm install -g deno
 
 WORKDIR /app
 
