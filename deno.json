@@ -1,0 +1,9 @@
+{
+  "imports": {
+    "@modelcontextprotocol/sdk": "npm:@modelcontextprotocol/sdk@^1.8.0",
+    "fs": "npm:fs@^0.0.1-security",
+    "os": "npm:os@^0.1.2",
+    "path": "npm:path@^0.12.7",
+    "zod": "npm:zod@^3.24.2"
+  }
+}
