@@ -57,13 +57,12 @@ server.tool("scan_live_hosts",
   {
     scanType: z.enum(["-PE", "-PR", "-PS", "-PU"]).describe("The type of  live host discovery scan to perform, -PE for ping scan, -PR for ARP scan, -PS for TCP scan, -PU for UDP scan"),
     target: z.string().cidr().nonempty().describe("The target to scan for example 198.161.0.1/24"),
-    ipRange: z.string().nonempty().describe("The range of IPs to scan for example 24 for a 24 subnet"),
     speed: z.enum(["-T0", "-T1", "-T2", "-T3", "-T4", "-T5"]).optional().describe("The speed of the scan, -T0 for paranoid, -T1 for sneaky, -T2 for polite, -T3 for normal, -T4 for aggressive, -T5 for insane"),
   },
   async (request) => {
     const { scanType, target, ipRange } = request;
     const command = new Deno.Command("nmap", {
-      args: [scanType, "-sn", speed, `${target}/${ipRange}`],
+      args: [scanType, "-sn", speed, `${target}`],
       stdout: "piped",
   });
   
@@ -137,4 +136,3 @@ try{
 catch (error) {
   console.error("Failed to start server: ", error);
 }
-
